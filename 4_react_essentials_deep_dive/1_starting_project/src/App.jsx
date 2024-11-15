@@ -1,5 +1,6 @@
-import { useState } from 'react';
 // react hook
+import { useState } from 'react';
+
 import { CORE_CONCEPTS } from './data';
 import Header from './components/Header/Header';
 import CoreConcept from './components/CoreConcept';
@@ -15,7 +16,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <Header />
       <main>
         <section id="core-concepts">
@@ -66,7 +67,7 @@ function App() {
    
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
