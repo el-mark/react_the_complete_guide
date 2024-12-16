@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react';
 
 import TabButton from './TabButton';
 import { EXAMPLES } from '../data.js';
+import Section from './Section.jsx';
 
 export default function Examples() {
     const [ selectedTopic, setSelectedTopic ] = useState();
@@ -14,8 +15,7 @@ export default function Examples() {
     }
 
     return (
-        <section id="examples">
-        <h2>Examples</h2>
+      <Section id="examples" title="Examples">
         <menu>
           {/* component composition */}
           <TabButton
@@ -52,6 +52,6 @@ export default function Examples() {
             </div>
         )}
 
-      </section>
+      </Section>
     )
 }
