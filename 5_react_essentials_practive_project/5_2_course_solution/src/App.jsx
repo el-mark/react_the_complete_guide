@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { formatter } from './util/investment';
 import { calculateInvestmentResults } from './util/investment';
 import Header from './components/Header';
+import UserInput from './components/UserInput';
 
 function App() {
   const [ initialInvestment, setInitialInvestment] = useState(10000);
@@ -33,29 +34,8 @@ function App() {
 
   return (<div>
     <Header></Header>
+    <UserInput></UserInput>
     <main>
-      <div id="user-input">
-        <div className="input-group" style={{ marginBottom: "2rem", marginTop: "1rem" }}>
-          <div>
-            <label htmlFor="initial_investment">Initial Investment</label>
-            <input type="number" id="initial_investment" onChange={handleInvestmentChange} value={initialInvestment} />
-          </div>
-          <div>
-            <label htmlFor="annual-investment">Annual Investment</label>
-            <input type="number" id="annual-investment" onChange={handleAnnualInvestmentChange} value={annualInvestment} />
-          </div>
-        </div>
-        <div className="input-group" style={{ marginBottom: "1rem" }}>
-          <div>
-            <label htmlFor="expected-return">Expected Return</label>
-            <input type="number" id="expected-return" onChange={handleExpectedReturnChange} value={expectedReturn} />
-          </div>
-          <div>
-            <label htmlFor="duration">duration</label>
-            <input type="number" id="duration" onChange={handleDurationChange} value={duration}/>
-          </div>
-        </div>
-      </div>
       <div id="result">
         <table>
           <thead>
