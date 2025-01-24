@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { formatter } from './util/investment';
 import { calculateInvestmentResults } from './util/investment';
 
+import Header from './components/Header';
+
 function App() {
   const [ initialInvestment, setInitialInvestment] = useState(10000);
   function handleInvestmentChange(event) {
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <main>
+      <Header></Header>
       <div id="user-input">
         <div className="input-group" style={{ marginBottom: "2rem", marginTop: "1rem" }}>
           <div>
