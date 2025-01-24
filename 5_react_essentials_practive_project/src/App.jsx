@@ -1,3 +1,5 @@
+import { formatter } from './util/investment';
+
 function App() {
   return (
     <main>
@@ -27,27 +29,20 @@ function App() {
         <table>
           <thead>
             <tr>
-              <th>Person</th>
-              <th>Most interest in</th>
-              <th>Age</th>
-              <th>Age</th>
-              <th>Age</th>
+              <th>Year</th>
+              <th>Investment Value</th>
+              <th>Interest (Year)</th>
+              <th>Total Interest</th>
+              <th>Invested Capital</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Chris</td>
-              <td>HTML tables</td>
-              <td>22</td>
-              <td>22</td>
-              <td>22</td>
-            </tr>
-            <tr>
-              <td>Dennis</td>
-              <td>Web accessibility</td>
-              <td>45</td>
-              <td>22</td>
-              <td>22</td>
+              <td>1</td>
+              <td>{formatter.format(17000)}</td>
+              <td>{formatter.format(900)}</td>
+              <td>{formatter.format(900)}</td>
+              <td>{formatter.format(1000)}</td>
             </tr>
           </tbody>
         </table>
