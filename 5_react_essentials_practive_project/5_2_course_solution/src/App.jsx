@@ -11,19 +11,18 @@ function App() {
     duration: 10
   });
 
+  const inputsNotValid = userInput.duration < 1;
+
   function handleChange(inputIdentifier, newValue) {
       setUserInput(prevUserInput => (
           {...prevUserInput, [inputIdentifier]: +newValue}
       ));
   }
 
-  // let totalInterest = 0;
-  // let totalAnnualInvestment = 0;
-
   return (<div>
     <Header></Header>
     <UserInput userInput={userInput} handleChange={handleChange}></UserInput>
-    <Results userInput={userInput} ></Results>
+    { inputsNotValid ? (<p className="center">Duration can't be less than 1.</p>) : <Results userInput={userInput} />}
   </div>)
 }
 
