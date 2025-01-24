@@ -73,6 +73,10 @@ body {
   text-align: right;
 }
 
+#result table {
+  width: 100%;
+}
+
 #result thead {
   font-size: 0.7rem;
   color: #83e6c0;
