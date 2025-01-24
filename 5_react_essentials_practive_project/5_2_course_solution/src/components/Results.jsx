@@ -1,8 +1,11 @@
-import { formatter } from '../util/investment';
-import { calculateInvestmentResults } from '../util/investment';
+import { calculateInvestmentResults, formatter } from '../util/investment';
 
 export default function Results({userInput}) {
     const tableRows = calculateInvestmentResults(userInput);
+    const initialInvestment =
+        tableRows[0].valueEndOfYear -
+        tableRows[0].interest -
+        tableRows[0].annualInvestment
 
     return (
         <main>
@@ -18,15 +21,24 @@ export default function Results({userInput}) {
                         </tr>
                     </thead>
                     <tbody>
-                        {tableRows.map((row, rowIndex) => (
-                            <tr key={rowIndex}>
-                            <td>{formatter.format(row.year)}</td>
-                            <td>{formatter.format(row.valueEndOfYear)}</td>
-                            <td>{formatter.format(row.interest)}</td>
-                            <td>{formatter.format(row.interest)}</td>
-                            <td>{formatter.format(row.annualInvestment)}</td>
-                            </tr>
-                        ))}
+                        {tableRows.map((row) => {
+                            const totalInterest =
+                                row.valueEndOfYear - row.annualInvestment * row.year -
+                                initialInvestment;
+
+                            const totalAmountInvested =
+                                row.valueEndOfYear - totalInterest;
+
+                            return (
+                                <tr key={row.year}>
+                                    <td>{formatter.format(row.year)}</td>
+                                    <td>{formatter.format(row.valueEndOfYear)}</td>
+                                    <td>{formatter.format(row.interest)}</td>
+                                    <td>{formatter.format(totalInterest)}</td>
+                                    <td>{formatter.format(totalAmountInvested)}</td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>
