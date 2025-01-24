@@ -3,7 +3,7 @@ import { formatter } from './util/investment';
 import { calculateInvestmentResults } from './util/investment';
 
 function App() {
-  const [ initialInvestment, setInitialInvestment] = useState(1000);
+  const [ initialInvestment, setInitialInvestment] = useState(10000);
   function handleInvestmentChange(event) {
     setInitialInvestment(event.target.value);
   }
@@ -13,7 +13,7 @@ function App() {
     setAnnualInvestment(event.target.value);
   }
 
-  const [ expectedReturn, setExpectedReturn] = useState(10);
+  const [ expectedReturn, setExpectedReturn] = useState(6);
   function handleExpectedReturnChange(event) {
     setExpectedReturn(event.target.value);
   }
@@ -23,28 +23,34 @@ function App() {
     setDuration(event.target.value);
   }
 
+  const tableRows = calculateInvestmentResults({
+    initialInvestment, annualInvestment, expectedReturn, duration
+  });
+
+  let totalInterest = 0;
+  let totalAnnualInvestment = 0;
 
   return (
     <main>
       <div id="user-input">
         <div className="input-group" style={{ marginBottom: "2rem", marginTop: "1rem" }}>
           <div>
-            <label htmlFor="initial-investment">Initial Investment</label>
-            <input type="number" name="initial-investment" onChange={handleInvestmentChange} value={initialInvestment} />
+            <label htmlFor="initial_investment">Initial Investment</label>
+            <input type="number" id="initial_investment" onChange={handleInvestmentChange} value={initialInvestment} />
           </div>
           <div>
             <label htmlFor="annual-investment">Annual Investment</label>
-            <input type="number" name="annual-investment" onChange={handleAnnualInvestmentChange} value={annualInvestment} />
+            <input type="number" id="annual-investment" onChange={handleAnnualInvestmentChange} value={annualInvestment} />
           </div>
         </div>
         <div className="input-group" style={{ marginBottom: "1rem" }}>
           <div>
             <label htmlFor="expected-return">Expected Return</label>
-            <input type="number" name="expected-return" onChange={handleExpectedReturnChange} value={expectedReturn} />
+            <input type="number" id="expected-return" onChange={handleExpectedReturnChange} value={expectedReturn} />
           </div>
           <div>
             <label htmlFor="duration">duration</label>
-            <input type="number" name="duration" onChange={handleDurationChange} value={duration}/>
+            <input type="number" id="duration" onChange={handleDurationChange} value={duration}/>
           </div>
         </div>
       </div>
@@ -60,13 +66,15 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>{formatter.format(17000)}</td>
-              <td>{formatter.format(900)}</td>
-              <td>{formatter.format(900)}</td>
-              <td>{formatter.format(1000)}</td>
-            </tr>
+            {tableRows.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                <td>{formatter.format(row.year)}</td>
+                <td>{formatter.format(row.valueEndOfYear)}</td>
+                <td>{formatter.format(row.interest)}</td>
+                <td>{formatter.format(totalInterest += row.interest)}</td>
+                <td>{formatter.format(totalAnnualInvestment += row.annualInvestment)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

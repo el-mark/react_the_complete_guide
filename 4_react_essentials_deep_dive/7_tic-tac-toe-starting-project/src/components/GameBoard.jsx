@@ -19,7 +19,7 @@ export default function GameBoard({ onSelectSquare, board }) {
                 <li key={rowIndex}>
                     <ol>
                         {row.map((playerSymbol, colIndex) => (
-                            <li>
+                            <li key={colIndex}>
                                 <button
                                     onClick={() => onSelectSquare(rowIndex, colIndex)} disabled={playerSymbol !== null}
                                 >
