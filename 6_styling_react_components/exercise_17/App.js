@@ -1,10 +1,10 @@
 import React from 'react';
 
 function App() {
-    const [buttonState, setButtonSate] = React.useSate('white');
+    const [buttonState, setButtonSate] = React.useState('white');
     
-    function hanldeOnClick() {
-        console.log('hola');
+    function hanldeOnClick(color) {
+        setButtonSate(color);
     }
     
     return (
@@ -14,10 +14,10 @@ function App() {
       >CSS is great!</h1>
       <menu>
         <li>
-          <button onClick={hanldeOnClick}>Yes</button>
+          <button onClick={() => hanldeOnClick('green')}>Yes</button>
         </li>
         <li>
-          <button>No</button>
+          <button onClick={() => hanldeOnClick('red')}>No</button>
         </li>
       </menu>
     </div>
