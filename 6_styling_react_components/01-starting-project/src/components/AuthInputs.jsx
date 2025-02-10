@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 
 import Button from './Button';
-import Input from './CustomInput';
+import Input from './Input';
 
 const ControlContainer = styled.div`
   display: flex;
