@@ -12,25 +12,36 @@ export function calculateInvestmentResults({
 }, results) {
   let investmentValue = initialInvestment;
 
-  if (duration && duration > 0) {
-    for (let i = 0; i < duration; i++) {
-      const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-      investmentValue += interestEarnedInYear + annualInvestment;
-      results.push({
-        year: i + 1, // year identifier
-        interest: interestEarnedInYear, // the amount of interest earned in this year
-        valueEndOfYear: investmentValue, // investment value at end of year
-        annualInvestment: annualInvestment, // investment added in this year
-      });
-    }
-  } else {
+  for (let i = 0; i < duration; i++) {
+    const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+    investmentValue += interestEarnedInYear + annualInvestment;
     results.push({
-      year: 1, // year identifier
-      interest: 0, // the amount of interest earned in this year
-      valueEndOfYear: 0, // investment value at end of year
-      annualInvestment: 0, // investment added in this year
+      year: i + 1, // year identifier
+      interest: interestEarnedInYear, // the amount of interest earned in this year
+      valueEndOfYear: investmentValue, // investment value at end of year
+      annualInvestment: annualInvestment, // investment added in this year
     });
   }
+  
+  // if (duration && duration > 0) {
+  //   for (let i = 0; i < duration; i++) {
+  //     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+  //     investmentValue += interestEarnedInYear + annualInvestment;
+  //     results.push({
+  //       year: i + 1, // year identifier
+  //       interest: interestEarnedInYear, // the amount of interest earned in this year
+  //       valueEndOfYear: investmentValue, // investment value at end of year
+  //       annualInvestment: annualInvestment, // investment added in this year
+  //     });
+  //   }
+  // } else {
+  //   results.push({
+  //     year: 1, // year identifier
+  //     interest: 0, // the amount of interest earned in this year
+  //     valueEndOfYear: 0, // investment value at end of year
+  //     annualInvestment: 0, // investment added in this year
+  //   });
+  // }
 }
 
 // The browser-provided Intl API is used to prepare a formatter object
